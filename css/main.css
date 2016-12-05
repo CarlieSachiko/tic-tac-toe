@@ -1,13 +1,13 @@
 * {
   box-sizing: border-box;
-  font-family: 'Rock Salt', cursive;
+  font-family: 'Reenie Beanie', cursive;
   color: white;
   background-color: #009DA0;
 }
 
 #content {
-  margin: auto;
-  width: 400px;
+  margin: 50px auto;
+  width: 500px;
 }
 
 header {
@@ -15,12 +15,13 @@ header {
   font-size: 65px;
   text-align: center;
   margin: auto;
-  padding: 10px;
+  padding: 20px 10px 10px;
   /*color:#128E8E;*/
-  letter-spacing: 8px;
+  letter-spacing: 10px;
 }
 
 p {
+  font-family: 'Josefin Sans', cursive;
   margin: 0 auto 50px;
   letter-spacing: 5px;
   text-align: center;
@@ -28,6 +29,7 @@ p {
 }
 
 p a {
+  font-family: 'Josefin Sans', cursive;
   text-decoration: none;
 }
 
@@ -41,6 +43,7 @@ p a:hover {
   display:block;
   margin: 0 auto 35px;
   letter-spacing: 3px;
+  font-size: 40px;
 }
 
 #board {
@@ -56,6 +59,7 @@ p a:hover {
   text-align: center;
   vertical-align: middle;
   padding: 5px;
+  font-size: 40px;
 }
 
 #board .top {
@@ -80,14 +84,14 @@ p a:hover {
 }
 
 #winner {
-  font-size: 25px;
+  font-size: 50px;
   margin: auto;
   padding: 10px;
   letter-spacing: 3px;
 }
 
 #restart {
-  font-size: 12px;
+  font-size: 30px;
    margin: auto;
   padding: 10px;
   letter-spacing: 3px;

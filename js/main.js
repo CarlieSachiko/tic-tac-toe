@@ -6,6 +6,7 @@ var gameOver;
 var restart=document.getElementById('restart');
 var winner=document.getElementById('winner')
 var catsGame;
+var cells = document.querySelectorAll('tr .cell');
 
 /*--- event listners ---*/
 
@@ -36,33 +37,26 @@ document.getElementById('restart')
 // }
 
 function initialize(){
-  board=['','','','','','','','',''];
+  board=[null,null,null,null,null,null,null,null,null,];
   player = Math.round(Math.random())?'X':'O';
   setMessage(player + "'s " + "turn");
-  updateDisplay();
   gameOver=false;
-}
-
-initialize();
-
-function updateDisplay(){
-  var cells =document.querySelectorAll('.cell');
-   for(var i=0; i<=board.length; i++){
-    cells[i].textContent='';
-  }
-    winner.innerHTML='';
+  winner.innerHTML='';
   restart.innerHTML='';
+  updateDisplay();
 }
 
 function setMessage(msg){
   document.getElementById('message').innerText = msg;
 }
 
-function reset (){
-  // winner.innerHTML='';
-  // restart.innerHTML='';
-  location.reload();
-  //initialize();
+initialize();
+
+function updateDisplay(){
+  for(var i=0; i<=board.length; i++){
+     cells[i].textContent='';
+     cells[i].style.color="white";
+  }
 }
 
 function changePlayer(){
@@ -79,60 +73,51 @@ function setWinner(){
   restart.textContent = "Play Again?";
   for(var i=0; i<=board.length; i++) {
     if (board[i]===player) {
-      document.querySelectorAll('.cell')[i].style.color="#FEDE4E";
+      cells[i].style.color="#FEDE4E";
     }
   }
+  gameOver=true;
 }
 
 
 function winnerStatus(){
  if (board[0]===player && board[1]===player && board[2]===player) {
     setWinner(player);
-    gameOver=true;
   };
  if (board[3]===player && board[4]===player && board[5]===player) {
     setWinner(player);
-    gameOver=true;
   };
  if (board[6]===player && board[7]===player && board[8]===player) {
     setWinner(player);
-    gameOver=true;
   };
 
  if (board[0]===player && board[3]===player && board[6]===player) {
     setWinner(player);
-    gameOver=true;
   };
  if (board[1]===player && board[4]===player && board[7]===player) {
     setWinner(player);
-    gameOver=true;
   };
  if (board[2]===player && board[5]===player && board[8]===player) {
     setWinner(player);
-    gameOver=true;
   };
 
  if (board[0]===player && board[4]===player && board[8]===player) {
     setWinner(player);
-    gameOver=true;
   };
  if (board[2]===player && board[4]===player && board[6]===player) {
     setWinner(player);
-    gameOver=true;
   };
 }
 
 function checkCats(p) {
-  //winnerStatus();
-  //if(!gameover){
+  if (gameOver) return;
     function catsCondition(p){
       return p===player;
     }
-    if (board.filter(catsCondition).length>=5){ //this won't work if someone wins with 5 marks on the board
+    if (board.filter(catsCondition).length>=5){
       winner.textContent="Cat's Game"
       restart.textContent = "Play Again?";
     }
-  //}
 }
 
 function renderBoard(x){
@@ -144,16 +129,15 @@ function handleClick(evt){
   var clickedEl=evt.target;
   if(clickedEl.textContent===''){
     clickedEl.textContent = player;
+    //updateDisplay(evt);
     renderBoard(evt);
-
     winnerStatus(player);
-
     checkCats(player);
     if (!gameOver){
       changePlayer();
     }
   }
-}
+};
 
 
 
