@@ -4,31 +4,40 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Tic Tac Toe</title>
-  <link href="https://fonts.googleapis.com/css?family=Rock+Salt" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Fredericka+the+Great|Reenie+Beanie|Rock+Salt|Walter+Turncoat|Josefin+Sans" rel="stylesheet">
   <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
-  <header>Tic Tac Toe</header>
 
-  <table id="board">
-    <tr>
-      <td class="top left"</td>
-      <td class="top"></td>
-      <td class="top right"></td>
-    </tr>
-    <tr>
-      <td class="left"></td>
-      <td class="middle"></td>
-      <td class="right"></td>
-    </tr>
-    <tr>
-      <td class="left bottom"></td>
-      <td class="bottom"></td>
-      <td class="right bottom"></td>
-    </tr>
-  </table>
+  <div id="content">
+    <header>Tic Tac Toe</header>
+    <p>Created By <a href="http://www.instagram.com/carlsclip">Carlie Clippinger</a></p>
+    <div id="message"></div>
 
-  <button id=playAgain>Play again</button>
+    <table id="board">
+      <tr class="top">
+        <td id ="0" class="cell top left"></td>
+        <td id ="1" class="cell top"></td>
+        <td id ="2" class="cell top right"></td>
+      </tr>
+      <tr class="middle">
+        <td id ="3" class="cell left"></td>
+        <td id ="4" class="cell middle"></td>
+        <td id ="5" class="cell right"></td>
+      </tr>
+      <tr class="bottom">
+        <td id ="6" class="cell left bottom"></td>
+        <td id ="7" class="cell bottom"></td>
+        <td id ="8" class="cell right bottom"></td>
+      </tr>
+    </table>
+  <div class="results">
+    <div id="winner"></div>
+    <div id="restart"></div>
+  </div>
+  </div>
+
+  <!-- <footer>Created By Carlie Clippinger</footer> -->
 
  <script src="js/main.js"></script>
 </body>

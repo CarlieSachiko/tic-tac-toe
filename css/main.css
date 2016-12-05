@@ -1,18 +1,46 @@
 * {
   box-sizing: border-box;
   font-family: 'Rock Salt', cursive;
+  color: white;
+  background-color: #009DA0;
+}
+
+#content {
+  margin: auto;
+  width: 400px;
 }
 
 header {
-  font-size: 40px;
+  font-family: 'Josefin Sans', cursive;
+  font-size: 65px;
   text-align: center;
-  margin: 30px auto ;
-  padding: 10px auto 5px auto;
+  margin: auto;
+  padding: 10px;
+  /*color:#128E8E;*/
+  letter-spacing: 8px;
 }
 
 p {
-  text-align:center;
-  padding: 0;
+  margin: 0 auto 50px;
+  letter-spacing: 5px;
+  text-align: center;
+  font-size: 12px;
+}
+
+p a {
+  text-decoration: none;
+}
+
+p a:hover {
+  color: #FFC300  ;
+}
+
+
+#message {
+  text-align: center;
+  display:block;
+  margin: 0 auto 35px;
+  letter-spacing: 3px;
 }
 
 #board {
@@ -22,9 +50,9 @@ p {
 }
 
 #board td {
-  border: black solid 2px;
-  width: 75px;
-  height:75px;
+  border: #005355 solid 4px;
+  width: 100px;
+  height:100px;
   text-align: center;
   vertical-align: middle;
   padding: 5px;
@@ -46,15 +74,29 @@ p {
   border-bottom: 0;
 }
 
-#playAgain {
-  font-size: 12px;
-  margin: 30px auto;
-  text-align:center;
-  padding: 5px;
-  background-color: white;
-  display: block;
+.results {
+  margin: 20px auto;
+  text-align: center;
 }
 
+#winner {
+  font-size: 25px;
+  margin: auto;
+  padding: 10px;
+  letter-spacing: 3px;
+}
+
+#restart {
+  font-size: 12px;
+   margin: auto;
+  padding: 10px;
+  letter-spacing: 3px;
+}
+
+#restart:hover {
+  color: #FFC300  ;
+  cursor: pointer;
+}
 
 
 
