@@ -1,14 +1,48 @@
+//Notes
+// 1. (Start the Game) function initialize
+  //   1a. set board =['','','','','','','','','']
+  //   1b. pick random player
+  //   1c. tell user who starts
+  //   1d. set gameOver = false
+  //   1e. reset win and play again messages
+  //   1f. clear cell textContent
+
+// 2. On click cell event listener
+  //   if !gamOver && if cell text content=''
+  //     2a. set cell textContent to player
+  //     2b. set player to board array
+  //     2c. check for winner
+  //       -if player index is 0,1,2 or 3,4,5 or 6,7,8 or 0,3,6, or 1,4,7 or 2,5,8 or 0,4,8 or 2,4,6
+  //         -set winning message
+  //         -show play again message
+  //         -gameOver = true
+  //     2d. check for cats game
+  //       -if !winner
+  //         -if # of player on board >=5
+  //           -set cats game message
+  //           -gameOver = true
+  //           -show play again message
+  //     2e. switch player
+
+// 3. On click play again
+  //   3a. run initialize
+
+
+
+
 /*--- variables ---*/
-//var winConditions=[[0,1,2], [3,4,5], [6,7,8], [0,3,6], [1,4,7], [2,5,8], [0,4,8], [2,4,6]];
-var player;
-var board;
-var gameOver;
+var player, board, gameOver, catsGame;
 var restart=document.getElementById('restart');
 var winner=document.getElementById('winner')
-var catsGame;
 var cells = document.querySelectorAll('tr .cell');
 
 /*--- event listners ---*/
+
+document.getElementById('board')
+.addEventListener('click', handleClick);
+
+document.getElementById('restart')
+.addEventListener('click', initialize);
 
 // document.getElementById('board')
 //   .addEventListener('mouseover', handleHoverIn);
@@ -16,11 +50,6 @@ var cells = document.querySelectorAll('tr .cell');
 // document.getElementById('body')
 // .addEventListener('load', initialize);
 
-document.getElementById('board')
-.addEventListener('click', handleClick);
-
-document.getElementById('restart')
-.addEventListener('click', initialize);
 
 
 /*--- functions ---*/
@@ -37,13 +66,14 @@ document.getElementById('restart')
 // }
 
 function initialize(){
-  board=[null,null,null,null,null,null,null,null,null,];
+  board=[null,null,null,null,null,null,null,null,null];
   player = Math.round(Math.random())?'X':'O';
-  setMessage(player + "'s " + "turn");
+  setMessage(player + "'s turn");
   gameOver=false;
   winner.innerHTML='';
   restart.innerHTML='';
-  updateDisplay();
+  //renderBoard();
+  resetDisplay();
 }
 
 function setMessage(msg){
@@ -52,7 +82,7 @@ function setMessage(msg){
 
 initialize();
 
-function updateDisplay(){
+function resetDisplay(){
   for(var i=0; i<=board.length; i++){
      cells[i].textContent='';
      cells[i].style.color="white";
@@ -60,11 +90,12 @@ function updateDisplay(){
 }
 
 function changePlayer(){
-  if (player==='X'){
-    player='O';
-  } else {
-    player = 'X';
-  }
+  player = (player==='X') ? 'O' : 'X';
+  // if (player==='X'){
+  //   player='O';
+  // } else {
+  //   player = 'X';
+  // }
   setMessage(player + "'s " + "turn");
 }
 
@@ -79,35 +110,34 @@ function setWinner(){
   gameOver=true;
 }
 
-
 function winnerStatus(){
  if (board[0]===player && board[1]===player && board[2]===player) {
-    setWinner(player);
+    setWinner();
   };
  if (board[3]===player && board[4]===player && board[5]===player) {
-    setWinner(player);
+    setWinner();
   };
  if (board[6]===player && board[7]===player && board[8]===player) {
-    setWinner(player);
+    setWinner();
   };
-
  if (board[0]===player && board[3]===player && board[6]===player) {
-    setWinner(player);
+    setWinner();
   };
  if (board[1]===player && board[4]===player && board[7]===player) {
-    setWinner(player);
+    setWinner();
   };
  if (board[2]===player && board[5]===player && board[8]===player) {
-    setWinner(player);
+    setWinner();
   };
 
  if (board[0]===player && board[4]===player && board[8]===player) {
-    setWinner(player);
+    setWinner();
   };
  if (board[2]===player && board[4]===player && board[6]===player) {
-    setWinner(player);
+    setWinner();
   };
 }
+
 
 function checkCats(p) {
   if (gameOver) return;
@@ -117,26 +147,32 @@ function checkCats(p) {
     if (board.filter(catsCondition).length>=5){
       winner.textContent="Cat's Game"
       restart.textContent = "Play Again?";
+      gameOver=true;
     }
 }
 
 function renderBoard(x){
-  board.splice(x.target.id, 1, player);
-}
+  board[x.target.id] = player;
+  //board.splice(x.target.id, 1, player);
+  board.forEach(function(cell,idx){
+    document.getElementById(idx).textContent=cell;
+  })
+}cell
+
 
 function handleClick(evt){
   if (gameOver) return;
   var clickedEl=evt.target;
-  if(clickedEl.textContent===''){
-    clickedEl.textContent = player;
-    //updateDisplay(evt);
+  if (clickedEl.textContent===''){
+    //clickedEl.textContent = player;
     renderBoard(evt);
-    winnerStatus(player);
+    winnerStatus();
     checkCats(player);
     if (!gameOver){
       changePlayer();
     }
   }
+  console.log(board);
 };
 
 
